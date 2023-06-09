@@ -1,0 +1,19 @@
+{
+  "name": "skse-clibng-template",
+  "version-string": "0.0.1",
+  "description": "SKSE CommonLibSSE-NG Template",
+  "homepage": "https://github.com/epinter/skse-clibng-template",
+  "license": "MIT",
+  "features": {
+    "plugin": {
+	  "description": "SKSE plugin",
+      "dependencies": [
+        "commonlibsse-ng",
+        "boost-algorithm"
+      ]
+    }
+  },
+  "default-features": [
+    "plugin"
+  ]
+}
