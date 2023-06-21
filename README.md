@@ -30,13 +30,13 @@ then
 or
 
 ~~~
-.\cmake\build.ps1 -buildType ALL-release -preset ALL
+.\cmake\build.ps1 -buildPreset ALL-relwithdebinfo
 ~~~
 
 or
 
 ~~~
-.\cmake\build.ps1 -buildType ALL-debug
+.\cmake\build.ps1 -buildPreset ALL-debug
 ~~~
 
 or
