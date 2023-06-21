@@ -50,18 +50,20 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/PCH.h")
 endif()
 
 ######## install and distribution
+install(FILES
+        "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.ini"
+        "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.toml"
+        CONFIGURATIONS Debug Release RelWithDebInfo
+        DESTINATION ${PLUGIN_INSTALL_DEST} OPTIONAL)
+
+if(PLUGIN_INSTALL_PDB)
+        install(FILES $<TARGET_PDB_FILE:${PROJECT_NAME}>
+                CONFIGURATIONS Debug RelWithDebInfo
+                DESTINATION ${PLUGIN_INSTALL_DEST} OPTIONAL)
+endif()
+
 install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION "SKSE/Plugins")
-
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.ini")
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.ini"
-            DESTINATION "SKSE/Plugins")
-endif()
-
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.toml")
-    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PROJECT_NAME}.toml"
-            DESTINATION "SKSE/Plugins")
-endif()
+        RUNTIME DESTINATION ${PLUGIN_INSTALL_DEST})
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/dist/Data")
     install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/dist/Data/"

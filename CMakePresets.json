@@ -19,6 +19,12 @@
       "configuration": "Debug"
     },
     {
+      "name": "ALL-relwithdebinfo",
+      "displayName": "RelWithDebInfo ALL",
+      "configurePreset": "ALL",
+      "configuration": "RelWithDebInfo"
+    },
+    {
       "name": "FLATRIM-release",
       "displayName": "Release SE+AE",
       "configurePreset": "FLATRIM",
