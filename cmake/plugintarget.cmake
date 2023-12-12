@@ -5,6 +5,9 @@ add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${HEADER_FILES} ${SOURCE_FILES}
                         VERSION ${PROJECT_VERSION}
                         )
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
+set_property(TARGET "${PROJECT_NAME}" PROPERTY COMPILE_PDB_NAME "${PROJECT_NAME}")
+set_property(TARGET "${PROJECT_NAME}" PROPERTY MSVC_DEBUG_INFORMATION_FORMAT "ProgramDatabase")
+
 target_include_directories(${PROJECT_NAME}
         PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
