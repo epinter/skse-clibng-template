@@ -7,58 +7,22 @@
   },
   "buildPresets": [
     {
-      "name": "ALL-release",
-      "displayName": "Release ALL",
+      "name": "release",
+      "displayName": "Release",
       "configurePreset": "ALL",
       "configuration": "Release"
     },
     {
-      "name": "ALL-debug",
-      "displayName": "Debug ALL",
+      "name": "debug",
+      "displayName": "Debug",
       "configurePreset": "ALL",
       "configuration": "Debug"
     },
     {
-      "name": "ALL-relwithdebinfo",
-      "displayName": "RelWithDebInfo ALL",
+      "name": "relwithdebinfo",
+      "displayName": "RelWithDebInfo",
       "configurePreset": "ALL",
       "configuration": "RelWithDebInfo"
-    },
-    {
-      "name": "FLATRIM-release",
-      "displayName": "Release SE+AE",
-      "configurePreset": "FLATRIM",
-      "configuration": "Release"
-    },
-    {
-      "name": "FLATRIM-debug",
-      "displayName": "Debug SE+AE",
-      "configurePreset": "FLATRIM",
-      "configuration": "Debug"
-    },
-    {
-      "name": "AE-release",
-      "displayName": "Release AE-only",
-      "configurePreset": "AE",
-      "configuration": "Release"
-    },
-    {
-      "name": "AE-debug",
-      "displayName": "Debug AE-only",
-      "configurePreset": "AE",
-      "configuration": "Debug"
-    },
-    {
-      "name": "SE-release",
-      "displayName": "Release SE-only",
-      "configurePreset": "SE",
-      "configuration": "Release"
-    },
-    {
-      "name": "SE-debug",
-      "displayName": "Debug SE-only",
-      "configurePreset": "SE",
-      "configuration": "Debug"
     }
   ],
   "configurePresets": [
@@ -66,9 +30,6 @@
       "name": "common",
       "installDir": "${sourceDir}/build/install",
       "hidden": true,
-      "cacheVariables": {
-        "SKSE_SUPPORT_XBYAK": "ON"
-      },
       "binaryDir": "${sourceDir}/build"
     },
     {
@@ -112,92 +73,6 @@
     {
       "name": "ALL",
       "hidden": false,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "ON",
-        "ENABLE_SKYRIM_SE": "ON",
-        "ENABLE_SKYRIM_VR": "ON"
-      },
-      "inherits": [
-        "common",
-        "vcpkg",
-        "win64",
-        "msvc"
-      ]
-    },
-    {
-      "name": "FLATRIM",
-      "hidden": true,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "ON",
-        "ENABLE_SKYRIM_SE": "ON",
-        "ENABLE_SKYRIM_VR": "OFF"
-      },
-      "inherits": [
-        "common",
-        "vcpkg",
-        "win64",
-        "msvc"
-      ]
-    },
-    {
-      "name": "AE",
-      "hidden": true,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "ON",
-        "ENABLE_SKYRIM_SE": "OFF",
-        "ENABLE_SKYRIM_VR": "OFF"
-      },
-      "inherits": [
-        "common",
-        "vcpkg",
-        "win64",
-        "msvc"
-      ]
-    },
-    {
-      "name": "SE",
-      "hidden": true,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "OFF",
-        "ENABLE_SKYRIM_SE": "ON",
-        "ENABLE_SKYRIM_VR": "OFF"
-      },
-      "inherits": [
-        "common",
-        "vcpkg",
-        "win64",
-        "msvc"
-      ]
-    },
-    {
-      "name": "VR",
-      "hidden": true,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "OFF",
-        "ENABLE_SKYRIM_SE": "OFF",
-        "ENABLE_SKYRIM_VR": "ON"
-      },
-      "inherits": [
-        "common",
-        "vcpkg",
-        "win64",
-        "msvc"
-      ]
-    },
-    {
-      "name": "PRE_AE",
-      "hidden": true,
-      "cacheVariables": {
-        "BUILD_SKYRIM": true,
-        "ENABLE_SKYRIM_AE": "OFF",
-        "ENABLE_SKYRIM_SE": "ON",
-        "ENABLE_SKYRIM_VR": "ON"
-      },
       "inherits": [
         "common",
         "vcpkg",

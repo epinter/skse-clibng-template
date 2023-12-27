@@ -1,4 +1,4 @@
-param([string]$buildPreset="ALL-release", [string]$configPreset="ALL", [string]$packConfig, [string]$packPreset)
+param([string]$buildPreset="release", [string]$configPreset="ALL", [string]$packConfig, [string]$packPreset)
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 3.0
 
@@ -7,7 +7,7 @@ Write-Warning "Using buildPreset='$buildPreset' and configPreset='$configPreset'
 $projectRoot = Resolve-Path "$PSScriptRoot/.."
 
 if(!$packPreset -and !$packConfig) {
-    $packConfig=$buildPreset.split("-")[1]
+    $packConfig=$buildPreset
 }
 
 Set-Location $projectRoot
