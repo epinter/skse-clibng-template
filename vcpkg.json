@@ -6,7 +6,7 @@
   "license": "MIT",
   "features": {
     "plugin": {
-	  "description": "SKSE plugin",
+      "description": "SKSE plugin",
       "dependencies": [
         "commonlibsse-ng",
         "boost-algorithm"
@@ -15,5 +15,6 @@
   },
   "default-features": [
     "plugin"
-  ]
+  ],
+  "builtin-baseline": "f1c6efee2245009540dde947e0e3d008f3aa7dbb"
 }
