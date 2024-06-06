@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "skse-clibng-template",
   "version-string": "0.0.1",
   "description": "SKSE CommonLibSSE-NG Template",
@@ -15,5 +16,5 @@
   "default-features": [
     "plugin"
   ],
-  "builtin-baseline": "f1c6efee2245009540dde947e0e3d008f3aa7dbb"
+  "builtin-baseline": "a4275b7eee79fb24ec2e135481ef5fce8b41c339"
 }

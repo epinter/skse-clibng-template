@@ -2,11 +2,15 @@
 find_package(CommonLibSSE REQUIRED)
 add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${HEADER_FILES} ${SOURCE_FILES}
                         NAME ${PROJECT_NAME}
-                        VERSION ${PROJECT_VERSION}
-                        )
+                        VERSION ${PROJECT_VERSION})
+
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
-set_property(TARGET "${PROJECT_NAME}" PROPERTY COMPILE_PDB_NAME "${PROJECT_NAME}")
-set_property(TARGET "${PROJECT_NAME}" PROPERTY MSVC_DEBUG_INFORMATION_FORMAT "ProgramDatabase")
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_${CMAKE_CXX_STANDARD})
+
+if(MSVC)
+        target_compile_options(${PROJECT_NAME} PRIVATE /Zi)
+        target_link_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:/DEBUG:FULL;/INCREMENTAL:NO;/OPT:REF,ICF>")
+endif()
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE

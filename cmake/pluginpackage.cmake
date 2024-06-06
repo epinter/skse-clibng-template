@@ -7,7 +7,7 @@ install(FILES
 
 if(PLUGIN_INSTALL_PDB)
         install(FILES $<TARGET_PDB_FILE:${PROJECT_NAME}>
-                CONFIGURATIONS Debug RelWithDebInfo
+                CONFIGURATIONS Release Debug RelWithDebInfo
                 DESTINATION ${PLUGIN_INSTALL_DEST} OPTIONAL)
 endif()
 

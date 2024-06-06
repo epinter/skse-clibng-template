@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.25)
-cmake_policy(SET CMP0141 NEW)
 
 project(
         Template
@@ -9,6 +8,7 @@ set(PROJECT_LICENSE "MIT")
 set(PROJECT_FRIENDLY_NAME ${PROJECT_NAME})
 set(PROJECT_LONG_NAME "Template CommonLibSSENG")
 set(PROJECT_DESCRIPTION ${PROJECT_LONG_NAME})
+set(PROJECT_COPYRIGHT "Copyright")
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)

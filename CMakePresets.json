@@ -9,28 +9,28 @@
     {
       "name": "release",
       "displayName": "Release",
-      "configurePreset": "ALL",
+      "configurePreset": "default",
       "configuration": "Release"
     },
     {
       "name": "debug",
       "displayName": "Debug",
-      "configurePreset": "ALL",
+      "configurePreset": "default",
       "configuration": "Debug"
     },
     {
       "name": "relwithdebinfo",
       "displayName": "RelWithDebInfo",
-      "configurePreset": "ALL",
+      "configurePreset": "default",
       "configuration": "RelWithDebInfo"
     }
   ],
   "configurePresets": [
     {
       "name": "common",
-      "installDir": "${sourceDir}/build/install",
       "hidden": true,
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/build/install"
     },
     {
       "name": "vcpkg",
@@ -71,7 +71,7 @@
       }
     },
     {
-      "name": "ALL",
+      "name": "default",
       "hidden": false,
       "inherits": [
         "common",
