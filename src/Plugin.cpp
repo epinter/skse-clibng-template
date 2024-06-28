@@ -37,8 +37,7 @@ namespace plugin {
         if (IsDebuggerPresent()) {
             log = std::make_shared<spdlog::logger>("Global", std::make_shared<spdlog::sinks::msvc_sink_mt>());
         } else {
-            log = std::make_shared<spdlog::logger>("Global",
-                                                   std::make_shared<spdlog::sinks::basic_file_sink_mt>(path->string(), true));
+            log = std::make_shared<spdlog::logger>("Global", std::make_shared<spdlog::sinks::basic_file_sink_mt>(path->string(), true));
         }
         log->set_level(spdlog::level::info);
         log->flush_on(spdlog::level::info);
