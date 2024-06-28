@@ -17,6 +17,7 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/cmake>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/external/include>
         $<INSTALL_INTERFACE:src>)
 
 target_include_directories(${PROJECT_NAME}
