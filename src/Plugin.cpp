@@ -56,10 +56,7 @@ SKSEPluginLoad(const LoadInterface* skse) {
     logger::info("'{} {}' is loading, game version '{}'...", plugin->GetName(), version, REL::Module::get().version());
     Init(skse);
 
-    GameEventHandler::getInstance().registerListener<GameEventHandler>();
-
     GameEventHandler::getInstance().onLoad();
-
     logger::info("{} has finished loading.", plugin->GetName());
     return true;
 }

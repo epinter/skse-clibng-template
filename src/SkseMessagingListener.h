@@ -23,13 +23,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+template <class T>
 class SkseMessagingListener {
     protected:
         SkseMessagingListener() = default;
 
     private:
-        SkseMessagingListener(const SkseMessagingListener&) = delete;
-        SkseMessagingListener& operator=(const SkseMessagingListener&) = delete;
+        SkseMessagingListener(SkseMessagingListener&) = delete;
+        SkseMessagingListener& operator=(SkseMessagingListener&&) = delete;
+        void operator=(SkseMessagingListener&) = delete;
 
     public:
         ~SkseMessagingListener() = default;
@@ -64,7 +66,6 @@ class SkseMessagingListener {
         // Player deleted a saved game from within the load menu.
         virtual void onDeleteGame(){};
 
-        template <class T>
         auto registerListener() {
             if (!SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* message) {
                     switch (message->type) {

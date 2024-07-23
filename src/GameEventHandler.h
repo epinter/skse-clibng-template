@@ -2,12 +2,14 @@
 #include "SkseMessagingListener.h"
 
 namespace plugin {
-    class GameEventHandler : public SkseMessagingListener {
+    class GameEventHandler : public SkseMessagingListener<GameEventHandler> {
         private:
-            GameEventHandler() = default;
-            GameEventHandler(const GameEventHandler&) = delete;
-            GameEventHandler& operator=(const GameEventHandler&) = delete;
-
+            GameEventHandler() {
+                registerListener();
+            };
+            GameEventHandler(GameEventHandler&) = delete;
+            GameEventHandler& operator=(GameEventHandler&&) = delete;
+            void operator=(GameEventHandler&) = delete;
         public:
             [[nodiscard]] static GameEventHandler& getInstance() {
                 static GameEventHandler instance;
