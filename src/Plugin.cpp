@@ -31,7 +31,7 @@ namespace plugin {
         if (!path) {
             report_and_fail("Can't find SKSE log directory");
         }
-        *path /= fmt::format("{}.log"sv, PluginDeclaration::GetSingleton()->GetName());
+        *path /= std::format("{}.log"sv, PluginDeclaration::GetSingleton()->GetName());
 
         std::shared_ptr<spdlog::logger> log;
         if (IsDebuggerPresent()) {

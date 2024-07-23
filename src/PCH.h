@@ -105,8 +105,8 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
 
-#define PLUGIN_LOGPATTERN_DEFAULT "[%Y-%m-%d %H:%M:%S.%e] [%n] [%l] [%t] %v"
-#define PLUGIN_LOGPATTERN_DEBUG "[%Y-%m-%d %H:%M:%S.%e] [%n] [%l] [%t] [%s:%#] %v"
+#define PLUGIN_LOGPATTERN_DEFAULT "[%b %d %H:%M:%S.%e] [%l] [%t] %v"
+#define PLUGIN_LOGPATTERN_DEBUG "[%b %d %H:%M:%S.%e] [%l] [%t] [%s:%#] %v"
 
 //commonlibsse-ng and skse
 #include <RE/Skyrim.h>
