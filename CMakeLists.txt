@@ -16,6 +16,7 @@ include(addpluginsources)
 include(pluginconfig)
 include(plugintarget)
 include(pluginpackage)
+include("${PROJECT_SOURCE_DIR}/local.cmake" OPTIONAL)
 
 ######## dependencies
 set(Boost_NO_WARN_NEW_VERSIONS 1)
