@@ -3,6 +3,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_${CMAKE_CXX_STANDARD})
 
 if(EXISTS "${CMAKE_SOURCE_DIR}/extern/CommonLibSSE-NG")
+        set(BUILD_TESTS OFF CACHE BOOL "Disable CommonLibSSE build tests")
         add_subdirectory("${CMAKE_SOURCE_DIR}/extern/CommonLibSSE-NG" CommonLibSSE EXCLUDE_FROM_ALL)
 else()
         find_package(CommonLibSSE REQUIRED)
