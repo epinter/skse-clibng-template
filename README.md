@@ -12,6 +12,10 @@
 - [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/)
 - [CommonLibSSE-NG](https://github.com/CharmedBaryon/CommonLibSSE-NG)
 
+#### ***CommonLibSSE-NG***
+
+To use CommonLibSSE-NG as a git-submodule instead of overlay-ports, clone it to extern/CommonLibSSE-NG and edit vcpkg.json removing "commonlibsse-ng" and adding its dependencies.
+
 ## ***Building***
 
 In `Developer Command Prompt for VS 2022` or `Developer PowerShell for VS 2022`, run:
