@@ -9,6 +9,7 @@
       "description": "SKSE plugin",
       "dependencies": [
         "commonlibsse-ng",
+        "spdlog",
         "boost-algorithm"
       ]
     }
