@@ -4,16 +4,21 @@
 
 namespace Plugin
 {
-	using namespace std::literals;
+    using namespace std::string_view_literals;
 
-	inline constexpr REL::Version VERSION
-	{
-		// clang-format off
-		@PROJECT_VERSION_MAJOR@u,
-		@PROJECT_VERSION_MINOR@u,
-		@PROJECT_VERSION_PATCH@u,
-		// clang-format on
-	};
-
-	inline constexpr auto NAME = "@PROJECT_NAME@"sv;
+    static constexpr auto Name{ "@PROJECT_NAME@"sv };
+    static constexpr auto Author{ "@PROJECT_AUTHOR@"sv };
+    static constexpr auto Version{
+        REL::Version{@PROJECT_VERSION_MAJOR@u, @PROJECT_VERSION_MINOR@u, @PROJECT_VERSION_PATCH@u, 0}
+    };
 }
+
+SKSEPluginInfo(
+    .Version = Plugin::Version,
+    .Name = Plugin::Name,
+    .Author = Plugin::Author,
+    .SupportEmail = ""sv,
+    .StructCompatibility = SKSE::StructCompatibility::Independent,
+    .RuntimeCompatibility = SKSE::VersionIndependence::AddressLibrary,
+    .MinimumSKSEVersion = REL::Version{ 0, 0, 0, 0 }
+)

@@ -2,6 +2,7 @@ using namespace SKSE;
 using namespace SKSE::log;
 using namespace SKSE::stl;
 
+#include "Plugin.h"
 #include "GameEventHandler.h"
 
 namespace plugin {

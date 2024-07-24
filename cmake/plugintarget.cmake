@@ -1,11 +1,15 @@
 ######## target
-find_package(CommonLibSSE REQUIRED)
-add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${HEADER_FILES} ${SOURCE_FILES}
-                        NAME ${PROJECT_NAME}
-                        VERSION ${PROJECT_VERSION})
-
-add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_${CMAKE_CXX_STANDARD})
+
+if(EXISTS "${CMAKE_SOURCE_DIR}/extern/CommonLibSSE-NG")
+        add_subdirectory("${CMAKE_SOURCE_DIR}/extern/CommonLibSSE-NG" CommonLibSSE EXCLUDE_FROM_ALL)
+else()
+        find_package(CommonLibSSE REQUIRED)
+endif()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE CommonLibSSE::CommonLibSSE)
+target_include_directories(${PROJECT_NAME} PRIVATE CommonLibSSE::CommonLibSSE)
 
 if(MSVC)
         target_compile_options(${PROJECT_NAME} PRIVATE /Zi)
@@ -24,8 +28,8 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/PCH.h")
+if(EXISTS "${CMAKE_SOURCE_DIR}/src/PCH.h")
     target_precompile_headers(${PROJECT_NAME}
     PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/PCH.h")
+        "${CMAKE_SOURCE_DIR}/src/PCH.h")
 endif()
