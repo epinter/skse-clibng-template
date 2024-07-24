@@ -6,22 +6,23 @@ using namespace SKSE::stl;
 
 namespace plugin {
     std::optional<std::filesystem::path> getLogDirectory() {
+        using namespace std::filesystem;
         PWSTR buf;
         SHGetKnownFolderPath(FOLDERID_Documents, KF_FLAG_DEFAULT, nullptr, &buf);
         std::unique_ptr<wchar_t, decltype(&CoTaskMemFree)> documentsPath{buf, CoTaskMemFree};
-        std::filesystem::path directory{documentsPath.get()};
+        path directory{documentsPath.get()};
         directory.append("My Games"sv);
 
-        if (SKYRIM_REL_VR_CONSTEXPR(REL::Module::IsVR())) {
+        if (SKYRIM_REL_VR_CONSTEXPR(REL::Module::IsVR()) || exists("openvr_api.dll")) {
             directory.append("Skyrim VR"sv);
-        } else if (std::filesystem::exists("steam_api64.dll"sv)) {
+        } else if (exists("steam_api64.dll"sv)) {
             directory.append("Skyrim Special Edition"sv);
-        } else if (std::filesystem::exists("Galaxy64.dll"sv)) {
+        } else if (exists("Galaxy64.dll"sv)) {
             directory.append("Skyrim Special Edition GOG"sv);
-        } else if (std::filesystem::exists("eossdk-win64-shipping.dll"sv)) {
+        } else if (exists("eossdk-win64-shipping.dll"sv)) {
             directory.append("Skyrim Special Edition EPIC"sv);
         } else {
-            return std::filesystem::current_path().append("skselogs");
+            return current_path().append("skselogs");
         }
         return directory.append("SKSE"sv);
     }
