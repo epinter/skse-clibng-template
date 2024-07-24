@@ -23,6 +23,24 @@
       "displayName": "RelWithDebInfo",
       "configurePreset": "default",
       "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "release-novr",
+      "displayName": "Release NoVR",
+      "configurePreset": "no-vr",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-novr",
+      "displayName": "Debug NoVR",
+      "configurePreset": "no-vr",
+      "configuration": "Debug"
+    },
+    {
+      "name": "relwithdebinfo-novr",
+      "displayName": "RelWithDebInfo NoVR",
+      "configurePreset": "no-vr",
+      "configuration": "RelWithDebInfo"
     }
   ],
   "configurePresets": [
@@ -71,6 +89,13 @@
       }
     },
     {
+      "name": "novr",
+      "hidden": true,
+      "cacheVariables": {
+        "ENABLE_SKYRIM_VR": "OFF"
+      }
+    },
+    {
       "name": "default",
       "hidden": false,
       "inherits": [
@@ -78,6 +103,17 @@
         "vcpkg",
         "win64",
         "msvc"
+      ]
+    },
+    {
+      "name": "no-vr",
+      "hidden": false,
+      "inherits": [
+        "common",
+        "vcpkg",
+        "win64",
+        "msvc",
+        "novr"
       ]
     }
   ]
