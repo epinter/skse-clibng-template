@@ -100,6 +100,8 @@
 #include <vector>
 #include <version>
 
+#define WIN32_LEAN_AND_MEAN
+
 //spdlog
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
@@ -123,6 +125,4 @@
 #define DLLEXPORT __declspec(dllexport)
 
 using namespace std::literals;
-using namespace REL::literals;
-
 namespace logger = SKSE::log;

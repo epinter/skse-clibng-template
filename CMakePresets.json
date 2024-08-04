@@ -8,38 +8,56 @@
   "buildPresets": [
     {
       "name": "release",
-      "displayName": "Release",
+      "displayName": "Release NG",
       "configurePreset": "default",
       "configuration": "Release"
     },
     {
       "name": "debug",
-      "displayName": "Debug",
+      "displayName": "Debug NG",
       "configurePreset": "default",
       "configuration": "Debug"
     },
     {
       "name": "relwithdebinfo",
-      "displayName": "RelWithDebInfo",
+      "displayName": "RelWithDebInfo NG",
       "configurePreset": "default",
       "configuration": "RelWithDebInfo"
     },
     {
       "name": "release-novr",
-      "displayName": "Release NoVR",
+      "displayName": "Release NG-NoVR",
       "configurePreset": "no-vr",
       "configuration": "Release"
     },
     {
       "name": "debug-novr",
-      "displayName": "Debug NoVR",
+      "displayName": "Debug NG-NoVR",
       "configurePreset": "no-vr",
       "configuration": "Debug"
     },
     {
       "name": "relwithdebinfo-novr",
-      "displayName": "RelWithDebInfo NoVR",
+      "displayName": "RelWithDebInfo NG-NoVR",
       "configurePreset": "no-vr",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "release-vr",
+      "displayName": "Release VR",
+      "configurePreset": "vr",
+      "configuration": "Release"
+    },
+    {
+      "name": "debug-vr",
+      "displayName": "Debug VR",
+      "configurePreset": "vr",
+      "configuration": "Debug"
+    },
+    {
+      "name": "relwithdebinfo-vr",
+      "displayName": "RelWithDebInfo VR",
+      "configurePreset": "vr",
       "configuration": "RelWithDebInfo"
     }
   ],
@@ -89,7 +107,23 @@
       }
     },
     {
-      "name": "novr",
+      "name": "build-ng",
+      "hidden": true,
+      "cacheVariables": {
+        "SKYRIM_SUPPORT_AE": "ON",
+        "ENABLE_SKYRIM_AE": "ON",
+        "ENABLE_SKYRIM_SE": "ON"
+      }
+    },
+    {
+      "name": "build-vr",
+      "hidden": true,
+      "cacheVariables": {
+        "ENABLE_SKYRIM_VR": "ON"
+      }
+    },
+    {
+      "name": "build-novr",
       "hidden": true,
       "cacheVariables": {
         "ENABLE_SKYRIM_VR": "OFF"
@@ -102,7 +136,19 @@
         "common",
         "vcpkg",
         "win64",
-        "msvc"
+        "msvc",
+        "build-ng"
+      ]
+    },
+    {
+      "name": "vr",
+      "hidden": false,
+      "inherits": [
+        "common",
+        "vcpkg",
+        "win64",
+        "msvc",
+        "build-vr"
       ]
     },
     {
@@ -113,7 +159,8 @@
         "vcpkg",
         "win64",
         "msvc",
-        "novr"
+        "build-ng",
+        "build-novr"
       ]
     }
   ]

@@ -14,10 +14,12 @@ namespace plugin {
         path directory{documentsPath.get()};
         directory.append("My Games"sv);
 
-        if (SKYRIM_REL_VR_CONSTEXPR(REL::Module::IsVR()) || exists("openvr_api.dll")) {
-            directory.append("Skyrim VR"sv);
-        } else if (exists("steam_api64.dll"sv)) {
-            directory.append("Skyrim Special Edition"sv);
+        if (exists("steam_api64.dll"sv)) {
+            if (exists("openvr_api.dll") || exists("Data/SkyrimVR.esm")) {
+                directory.append("Skyrim VR"sv);
+            } else {
+                directory.append("Skyrim Special Edition"sv);
+            }
         } else if (exists("Galaxy64.dll"sv)) {
             directory.append("Skyrim Special Edition GOG"sv);
         } else if (exists("eossdk-win64-shipping.dll"sv)) {
@@ -25,15 +27,15 @@ namespace plugin {
         } else {
             return current_path().append("skselogs");
         }
-        return directory.append("SKSE"sv);
+        return directory.append("SKSE"sv).make_preferred();
     }
 
     void initializeLogging() {
-        auto path = log_directory();
+        auto path = getLogDirectory();
         if (!path) {
             report_and_fail("Can't find SKSE log directory");
         }
-        *path /= std::format("{}.log"sv, PluginDeclaration::GetSingleton()->GetName());
+        *path /= std::format("{}.log"sv, Plugin::Name);
 
         std::shared_ptr<spdlog::logger> log;
         if (IsDebuggerPresent()) {
@@ -51,14 +53,13 @@ namespace plugin {
 
 using namespace plugin;
 
-SKSEPluginLoad(const LoadInterface* skse) {
+extern "C" DLLEXPORT bool SKSEPlugin_Load(const LoadInterface* skse) {
     initializeLogging();
-    const auto* plugin = PluginDeclaration::GetSingleton();
-    auto version = plugin->GetVersion();
-    logger::info("'{} {}' is loading, game version '{}'...", plugin->GetName(), version, REL::Module::get().version());
+
+    logger::info("'{} {}' is loading, game version '{}'...", Plugin::Name, Plugin::VersionString, REL::Module::get().version().string());
     Init(skse);
 
     GameEventHandler::getInstance().onLoad();
-    logger::info("{} has finished loading.", plugin->GetName());
+    logger::info("{} has finished loading.", Plugin::Name);
     return true;
 }
