@@ -14,7 +14,7 @@ namespace Plugin {
     static constexpr auto VersionString{ "@PROJECT_VERSION@"sv };
 }
 
-#ifdef SKSEPluginInfo //commonlibsse-ng
+#if defined(SKSEPluginInfo)
 SKSEPluginInfo(
     .Version = Plugin::Version,
     .Name = Plugin::Name,
@@ -24,7 +24,7 @@ SKSEPluginInfo(
     .RuntimeCompatibility = SKSE::VersionIndependence::AddressLibrary,
     .MinimumSKSEVersion = REL::Version{ 0, 0, 0, 0 }
 )
-#elif SKYRIM_SUPPORT_AE || ENABLE_SKYRIM_AE //commonlibsse
+#elif defined(ENABLE_SKYRIM_AE) || defined(SKYRIM_SUPPORT_AE)
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
 	v.PluginVersion(Plugin::Version);
