@@ -146,7 +146,6 @@
 //winapi
 #include <ShlObj_core.h>
 #include <Windows.h>
-#include <Psapi.h>
 
 #undef cdecl  // Workaround for Clang 14 CMake configure error.
 
