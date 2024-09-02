@@ -6,11 +6,11 @@ Write-Warning "Using buildPreset='$buildPreset' and configPreset='$configPreset'
 
 $projectRoot = Resolve-Path "$PSScriptRoot/.."
 
-if(!$packPreset -and !$packConfig) {
+if (!$packPreset -and !$packConfig) {
     $packConfig=$buildPreset
 }
 $toolsetParam=""
-if($toolset) {
+if ($toolset) {
     $toolsetParam="-T $toolset"
 }
 
@@ -19,13 +19,14 @@ Write-Warning "Starting cmake"
 cmake -B build -S "$projectRoot" --preset $configPreset --fresh $toolsetParam
 
 Write-Warning "Starting cmake --build with preset '$($buildPreset)'"
-cmake --build "$projectRoot/build" --preset "$($buildPreset)" --install $toolsetParam
+Invoke-Expression "cmake --build '$projectRoot/build' --preset '$($buildPreset)'"
+
 Set-Location "$projectRoot/build"
 
-if($packPreset) {
+if ($packPreset) {
     Write-Warning "Starting cpack with preset '$($packPreset)'"
     cpack --preset "$($packPreset)"
-} elseif($packConfig) {
+} elseif ($packConfig) {
     Write-Warning "Starting cpack with config '$($packConfig)'"
     cpack -C "$($packConfig)"
 }
