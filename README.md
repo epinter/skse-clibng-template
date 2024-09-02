@@ -34,20 +34,44 @@ then
 or
 
 ~~~
-.\cmake\build.ps1 -buildPreset ALL-relwithdebinfo
+.\cmake\build.ps1 -buildPreset relwithdebinfo
 ~~~
 
 or
 
 ~~~
-.\cmake\build.ps1 -buildPreset ALL-debug
+.\cmake\build.ps1 -buildPreset debug
 ~~~
 
 or
 
 ~~~
-cmake -B build -S . --preset ALL --fresh
-cmake --build build --preset ALL-release
+cmake -B build -S . --preset default --fresh
+cmake --build build --preset release
 ~~~
 
 Then get the .dll in build/Release, or the .zip (ready to install using mod manager) in build.
+
+## ***Clean up the template***
+
+This template contains some examples that can be removed if not used:
+
+- Boost dependencies in CMakeLists.txt and vcpkg.json
+- Sample files inside dist/ directory (used to by cpack to generate .zip)
+- GameEventHandler.cpp, GameEventHandler.h and SkseMessagingListener.h.
+- .clang-tidy and .clang-format
+- Log directory method in Plugin.cpp
+
+## ***File local.cmake***
+
+CMake will use a file named local.cmake (project root), in this file you can add something like:
+
+~~~
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND xcopy /y /-I "bin\\$<CONFIG>\\${PROJECT_NAME}.dll" "C:\\games\\Skyrim\\Data\\SKSE\\Plugins\\${PROJECT_NAME}.dll"
+    COMMAND xcopy /y /-I "bin\\$<CONFIG>\\${PROJECT_NAME}.pdb" "C:\\games\\Skyrim\\Data\\SKSE\\Plugins\\${PROJECT_NAME}.pdb"
+)
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND "C:\\games\\Skyrim\\skse64_loader.exe" WORKING_DIRECTORY "C:\\games\\Skyrim"
+)
+~~~
