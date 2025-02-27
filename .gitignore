@@ -1,4 +1,5 @@
 /local.cmake
+/extern/
 /out/
 /build/
 /.vscode
