@@ -4,7 +4,7 @@
 namespace plugin {
     void GameEventHandler::onLoad() {
         logger::info("onLoad()");
-        Hooks::installQuitGameHook();
+        Hooks::install();
     }
 
     void GameEventHandler::onPostLoad() {
