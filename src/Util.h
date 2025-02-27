@@ -1,3 +1,5 @@
+#pragma once
+
 struct Hooking {
         template <class T, size_t size = 5>
         static void writeCall() {
