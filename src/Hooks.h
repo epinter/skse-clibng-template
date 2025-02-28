@@ -23,5 +23,21 @@ namespace plugin {
                         Hooking::writeCall<QuitGameHook>();
                     }
             };
+
+            struct QuitGameDetoursHook {
+                    static void hook() {
+                        Hooks::quitGame();
+                        orig();
+                    }
+
+                    static inline std::string logName = "QuitGameDetours";
+                    using FuncType = decltype(&hook);
+                    static inline FuncType orig;
+                    static inline REL::RelocationID srcFunc = REL::RelocationID{35552, 36551};
+
+                    static void install() {
+                        // Hooking::writeDetour<QuitGameDetoursHook>();
+                    }
+            };
     };
 }  // namespace plugin
