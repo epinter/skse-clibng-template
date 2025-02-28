@@ -28,4 +28,6 @@ if(Boost_FOUND)
     target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIRS})
 endif()
 
-
+# find_library(DETOURS_LIBRARY detours REQUIRED)
+# target_include_directories(${PROJECT_NAME} PRIVATE ${DETOURS_INCLUDE_DIRS})
+# target_link_libraries(${PROJECT_NAME} PRIVATE ${DETOURS_LIBRARY})

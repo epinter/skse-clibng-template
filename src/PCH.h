@@ -130,6 +130,8 @@
 #define NODEFERWINDOWPOS  // DeferWindowPos routines
 #define NOMCX             // Modem Configuration Extensions
 
+#include "BuildOptions.h"
+
 //spdlog
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
@@ -146,6 +148,10 @@
 //winapi
 #include <ShlObj_core.h>
 #include <Windows.h>
+
+#if DETOURS_LIBRARY
+#include <detours/detours.h>
+#endif
 
 //local
 #include "Util.h"

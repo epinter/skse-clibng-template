@@ -32,4 +32,26 @@ struct Hooking {
                 }
             }
         }
+
+        template <class T>
+        static void writeDetour() {
+#if DETOURS_LIBRARY
+            uintptr_t addrCall = T::srcFunc.address();
+            T::orig = reinterpret_cast<T::FuncType>(addrCall);
+            if (DetourTransactionBegin() == NO_ERROR && DetourUpdateThread(GetCurrentThread()) == NO_ERROR &&
+                DetourAttach(&reinterpret_cast<PVOID&>(T::orig), T::hook) == NO_ERROR && DetourTransactionCommit() == NO_ERROR) {
+                if constexpr (requires { T::logName; }) {
+                    if constexpr (requires { T::srcFunc.id(); }) {
+                        SKSE::log::info("{} hook installed at address 0x{:X} (id {})", T::logName, T::srcFunc.offset(), T::srcFunc.id());
+                    } else {
+                        SKSE::log::info("{} hook installed at address 0x{:X}", T::logName, T::srcFunc.offset());
+                    }
+                }
+            } else {
+                SKSE::log::error("Failed to install hook");
+            }
+#else
+            static_assert(buildOptions.detoursFound, "DETOURS NOT FOUND");
+#endif
+        }
 };
