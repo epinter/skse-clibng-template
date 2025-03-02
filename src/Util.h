@@ -1,5 +1,16 @@
 #pragma once
 
+struct RuntimeUtil {
+    static bool isWine() {
+        HMODULE ntdll = GetModuleHandleA("ntdll.dll");
+        if (GetProcAddress(ntdll, "wine_get_version")) {
+            return true;
+        }
+
+        return false;
+    }
+};
+
 struct Hooking {
         template <class T, size_t size = 5>
         static void writeCall() {
